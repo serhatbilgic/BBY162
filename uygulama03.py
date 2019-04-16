@@ -1,16 +1,44 @@
-#sözlük kullanarak basit bir telefon rehberi uygulaması
+import random
 
-telefon_rehberi = {"tokio" : "0542 465 56 58",
-                   "rio": "0536 945 86 09",
-                   "berlin" : "0553 741 37 55",
-                   "professor"  : "0333 333 33 33"}
+secilenKelime = random.choice(["mecnun", "ismail", "yavuz", "erdal", "iskender", "leyla", "dede", "kamil", "dostoyevski", "nurten"])
+hakSayısı = 3
+cizgi = "_"
+panoKelime =[]
+print("Adam Asmaca oyununa Hoşgeldiniz..\n")
 
-kişi = input("Telefon numarasını öğrenmek için bir kişi adı girin: ")
+for kelime in secilenKelime:
 
-cevap = "{} adlı kişinin telefon numarası: {}"
+    panoKelime.append(cizgi)
 
-if kişi in telefon_rehberi:
-    cevap = "{} adlı kişinin telefon numarası: {}"
-    print(cevap.format(kişi, telefon_rehberi[kişi]))
-else:
-    print("Aradığınız kişi telefon rehberinde yok!")
+print(panoKelime)
+
+while hakSayısı > 0:
+
+    i = 0
+
+    girilenHarf = input("\nBir harf giriniz: ").lower()
+
+    if girilenHarf in secilenKelime:
+        for kontrol in secilenKelime:
+            if secilenKelime[i] == girilenHarf:
+                panoKelime[i] = girilenHarf
+            i += 1
+
+        print("")
+        print(panoKelime)
+        print('Doğru harf girdiniz.')
+
+    else:
+        hakSayısı -= 1
+        print("")
+        print(panoKelime)
+        print("Yanlış harf girdiniz.")
+        print("\nKalan hak sayısı="+str(hakSayısı))
+
+    if hakSayısı == 0:
+        print('oyunu kaybettiniz.Doğru cevap"{}" idi.\n'.format(secilenKelime))
+        break
+
+    if cizgi not in panoKelime:
+        print("\nTebrikler! Kelimeyi buldunuz Oyunu Kazandınız!")
+        break
